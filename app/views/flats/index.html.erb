@@ -1,0 +1,15 @@
+<table>
+  <tr>
+    <th>Address</th>
+    <th>price</th>
+    <th colspan="2"></th>
+  </tr>
+ 
+<% @flats.each do |flat| %>
+  <tr>
+    <td><%= flat.address %></td>
+    <td><%= flat.price %></td>
+    <td><%= link_to 'Show', flat %></td>
+  </tr>
+<% end %>
+</table>

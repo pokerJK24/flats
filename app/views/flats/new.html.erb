@@ -1,0 +1,49 @@
+<%= javascript "http://maps.googleapis.com/maps/api/js?key=AIzaSyAblOW0n9V4N5FFwBcsJy1qvaiAMsa192k&sensor=true"%>
+
+<%= javascript "flats.js"%>
+
+
+<div  id="map_canvas" style="width:50%; height:50%"></div>
+
+<%= form_for @flat, url: flats_path, :html => { :id => "formFlat" } do |f| %>
+
+
+  <% if @flat.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@flat.errors.count, "error") %> prohibited
+        this flat from being published:</h2>
+    <ul>
+    <% @flat.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <p>enter the address </p>
+  <p>
+    <%= f.label :address %><br>
+    <%= f.text_area :address %>
+  </p>
+  <p>or click on the map</p>
+  <%= link_to 'Map', flats_path, id: "linkMap", remote: true %>
+  <p>
+    <%= f.label :price %><br>
+    <%= f.text_field :price %>
+  </p>
+  <p>
+   <%= f.fields_for :coordinates do |coord| %>
+    <%= coord.hidden_field :x %><br>
+    <%= coord.hidden_field :y %>
+  </p>
+  <% end %>
+  <p>
+    <%= f.submit %>
+  </p>
+  
+<% end %>
+
+
+
+
+
